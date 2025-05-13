@@ -3,12 +3,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 
-const initialHistory = [
-  { role: 'user', content: 'こんにちは！' },
-  { role: 'assistant', content: 'こんにちは。ご用件をどうぞ。' },
-  { role: 'user', content: 'AIチャットボットのMVPを作りたいです。' },
-  { role: 'assistant', content: '承知しました。どんな機能が必要ですか？' },
-];
+const initialHistory: { role: string; content: string }[] = [];
 
 const ChatClient = dynamic<{
   initialHistory: { role: string; content: string }[];
