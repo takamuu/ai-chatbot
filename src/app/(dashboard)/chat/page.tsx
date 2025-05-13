@@ -1,12 +1,4 @@
 import { auth } from '@clerk/nextjs/server';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from '@/components/ui/card';
-import { ChatInput } from '@/components/chat/ChatInput';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
@@ -18,12 +10,11 @@ const initialHistory = [
   { role: 'assistant', content: '承知しました。どんな機能が必要ですか？' },
 ];
 
-const ChatClient = dynamic<any>(
-  () => import('../../../components/chat/ChatClient'),
-  {
-    ssr: false,
-  }
-);
+const ChatClient = dynamic<{
+  initialHistory: { role: string; content: string }[];
+}>(() => import('../../../components/chat/ChatClient'), {
+  ssr: false,
+});
 
 export default async function ChatPage() {
   const { userId } = await auth();
